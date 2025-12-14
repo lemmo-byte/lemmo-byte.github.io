@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Seite</title>
+    <title>Lernpodcasts Klasse R6a</title>
     <style>
         * {
             margin: 0;
@@ -15,20 +15,25 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
         
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+        .header {
             text-align: center;
+            color: white;
+            padding: 40px 20px;
             animation: fadeIn 0.6s ease-in;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
         }
         
         @keyframes fadeIn {
@@ -42,93 +47,418 @@
             }
         }
         
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 2.5em;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
         }
         
-        .button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            cursor: pointer;
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            animation: slideUp 0.6s ease-out;
         }
         
-        .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
         }
         
-        .button:active {
-            transform: translateY(-1px);
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .info {
-            margin-top: 30px;
-            padding: 20px;
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        .category-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+        }
+        
+        .category-title {
+            font-size: 1.8em;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .podcast-item {
             background: #f8f9fa;
-            border-radius: 10px;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
             border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
         }
         
-        .info h2 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.3em;
+        .podcast-item:hover {
+            background: #e9ecef;
+            border-left-color: #764ba2;
         }
         
-        .info ul {
-            text-align: left;
+        .podcast-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .podcast-date {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .podcast-date::before {
+            content: "📅";
+            margin-right: 6px;
+        }
+        
+        .test-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .upcoming-badge {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .past-badge {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 8px;
+            outline: none;
+        }
+        
+        .audio-player::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .podcast-parts {
+            margin-top: 15px;
+        }
+        
+        .part-title {
+            font-size: 0.95em;
             color: #555;
-            list-style-position: inside;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
         
-        .info li {
-            margin: 8px 0;
+        .no-podcasts {
+            text-align: center;
+            color: #999;
+            padding: 30px;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            opacity: 0.9;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .category-card {
+                padding: 20px;
+            }
+            
+            .category-title {
+                font-size: 1.5em;
+            }
+            
+            .category-icon {
+                font-size: 2em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .podcast-item {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Test Seite</h1>
-        <p>
-            Willkommen auf Ihrer Test-Seite! Diese HTML-Datei wurde erfolgreich erstellt 
-            und kann als Ausgangspunkt für Ihr Projekt dienen.
-        </p>
-        <button class="button" onclick="showAlert()">Klick mich!</button>
+        <div class="header">
+            <h1>🎧 Lernpodcasts R6a</h1>
+            <p>Levin's Podcasts zur Vorbereitung auf Klassenarbeiten</p>
+        </div>
         
-        <div class="info">
-            <h2>Funktionen dieser Seite:</h2>
-            <ul>
-                <li>Modernes, responsives Design</li>
-                <li>Gradient-Hintergrund</li>
-                <li>Animationen und Hover-Effekte</li>
-                <li>Interaktive Buttons</li>
-                <li>Sauberer, semantischer Code</li>
-            </ul>
+        <div class="categories">
+            
+            <!-- 
+            ═══════════════════════════════════════════════════════════════════════════════
+            🎯 HIER NEUE PODCASTS HINZUFÜGEN
+            ═══════════════════════════════════════════════════════════════════════════════
+            
+            ANLEITUNG: So fügst du einen neuen Podcast hinzu:
+            
+            1. Kopiere eine der VORLAGEN unten (Vorlage A, B oder C)
+            2. Füge die Vorlage in diesem Bereich ein
+            3. Ändere die Texte und Pfade zu deinen Podcasts
+            4. Speichern und fertig!
+            
+            TIPP: Nutze "upcoming-badge" für kommende Tests und "past-badge" für vergangene
+            
+            ICONS für Kategorien: 🇬🇧 (Englisch) 🏛️ (Geschichte) 🧮 (Mathe) 🔬 (Physik)
+                                  🧪 (Chemie) 🌍 (Erdkunde) 🎨 (Kunst) ⚽ (Sport)
+            ═══════════════════════════════════════════════════════════════════════════════
+            -->
+            
+            
+            
+            <!-- ========== ENGLISCH KATEGORIE ========== -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🇬🇧</div>
+                    <div class="category-title">Englisch</div>
+                </div>
+                
+                <!-- Podcast: Vokabeln Unit 2 & 3 -->
+                <div class="podcast-item">
+                    <div class="podcast-title">
+                        Vokabeln Unit 2 & 3
+                        <span class="test-badge upcoming-badge">Test: 16.12.25</span>
+                    </div>
+                    <div class="podcast-date">Englischtest am 16. Dezember 2025</div>
+                    
+                    <!-- Mehrere Teile eines Podcasts -->
+                    <div class="podcast-parts">
+                        <div class="part-title">🎵 Teil 1</div>
+                        <audio class="audio-player" controls preload="metadata">
+                            <source src="podcasts/R6a/Englisch/Unit2_3_test/VokabelPodcast_Teil1.mp3" type="audio/mpeg">
+                            Dein Browser unterstützt das Audio-Element nicht.
+                        </audio>
+                        
+                        <div class="part-title">🎵 Teil 2</div>
+                        <audio class="audio-player" controls preload="metadata">
+                            <source src="podcasts/R6a/Englisch/Unit2_3_test/VokabelPodcast_Teil2.mp3" type="audio/mpeg">
+                            Dein Browser unterstützt das Audio-Element nicht.
+                        </audio>
+                        
+                        <div class="part-title">🎵 Teil 3</div>
+                        <audio class="audio-player" controls preload="metadata">
+                            <source src="podcasts/R6a/Englisch/Unit2_3_test/VokabelPodcast_Teil3.mp3" type="audio/mpeg">
+                            Dein Browser unterstützt das Audio-Element nicht.
+                        </audio>
+                        
+                        <div class="part-title">🎵 Teil 4</div>
+                        <audio class="audio-player" controls preload="metadata">
+                            <source src="podcasts/R6a/Englisch/Unit2_3_test/VokabelPodcast_Teil4.mp3" type="audio/mpeg">
+                            Dein Browser unterstützt das Audio-Element nicht.
+                        </audio>
+                    </div>
+                </div>
+                <!-- Ende: Vokabeln Unit 2 & 3 -->
+                
+            </div>
+            <!-- ========== ENDE ENGLISCH ========== -->
+            
+            
+            
+            <!-- ========== GESCHICHTE KATEGORIE ========== -->
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🏛️</div>
+                    <div class="category-title">Geschichte</div>
+                </div>
+                
+                <!-- Podcast: Ägypten -->
+                <div class="podcast-item">
+                    <div class="podcast-title">
+                        Ägypten
+                        <span class="test-badge past-badge">Test: 04.12.25</span>
+                    </div>
+                    <div class="podcast-date">Geschichtstest am 4. Dezember 2025</div>
+                    
+                    <!-- Einzelner Podcast -->
+                    <audio class="audio-player" controls preload="metadata">
+                        <source src="podcasts/R6a/Geschichte/AegyptenPodcast.mp3" type="audio/mpeg">
+                        Dein Browser unterstützt das Audio-Element nicht.
+                    </audio>
+                </div>
+                <!-- Ende: Ägypten -->
+                
+            </div>
+            <!-- ========== ENDE GESCHICHTE ========== -->
+            
+            
+        </div>
+        
+        
+        
+        <!-- 
+        ═══════════════════════════════════════════════════════════════════════════════
+        📋 VORLAGEN ZUM KOPIEREN
+        ═══════════════════════════════════════════════════════════════════════════════
+        
+        Wähle die passende Vorlage und kopiere sie nach oben in den Bereich "HIER NEUE PODCASTS HINZUFÜGEN"
+        
+        ═══════════════════════════════════════════════════════════════════════════════
+        VORLAGE A: NEUE KATEGORIE MIT EINZELNEM PODCAST
+        ═══════════════════════════════════════════════════════════════════════════════
+        
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">🧮</div>
+                <div class="category-title">KATEGORIE NAME</div>
+            </div>
+            
+            <div class="podcast-item">
+                <div class="podcast-title">
+                    PODCAST TITEL
+                    <span class="test-badge upcoming-badge">Test: TT.MM.JJ</span>
+                </div>
+                <div class="podcast-date">BESCHREIBUNG DES TESTS</div>
+                
+                <audio class="audio-player" controls preload="metadata">
+                    <source src="podcasts/R6a/KATEGORIE/DATEINAME.mp3" type="audio/mpeg">
+                    Dein Browser unterstützt das Audio-Element nicht.
+                </audio>
+            </div>
+        </div>
+        
+        
+        ═══════════════════════════════════════════════════════════════════════════════
+        VORLAGE B: PODCAST MIT MEHREREN TEILEN IN BESTEHENDE KATEGORIE EINFÜGEN
+        ═══════════════════════════════════════════════════════════════════════════════
+        
+        <div class="podcast-item">
+            <div class="podcast-title">
+                PODCAST TITEL
+                <span class="test-badge upcoming-badge">Test: TT.MM.JJ</span>
+            </div>
+            <div class="podcast-date">BESCHREIBUNG DES TESTS</div>
+            
+            <div class="podcast-parts">
+                <div class="part-title">🎵 Teil 1</div>
+                <audio class="audio-player" controls preload="metadata">
+                    <source src="podcasts/R6a/KATEGORIE/DATEINAME_Teil1.mp3" type="audio/mpeg">
+                    Dein Browser unterstützt das Audio-Element nicht.
+                </audio>
+                
+                <div class="part-title">🎵 Teil 2</div>
+                <audio class="audio-player" controls preload="metadata">
+                    <source src="podcasts/R6a/KATEGORIE/DATEINAME_Teil2.mp3" type="audio/mpeg">
+                    Dein Browser unterstützt das Audio-Element nicht.
+                </audio>
+            </div>
+        </div>
+        
+        
+        ═══════════════════════════════════════════════════════════════════════════════
+        VORLAGE C: EINZELNER PODCAST IN BESTEHENDE KATEGORIE EINFÜGEN
+        ═══════════════════════════════════════════════════════════════════════════════
+        
+        <div class="podcast-item">
+            <div class="podcast-title">
+                PODCAST TITEL
+                <span class="test-badge upcoming-badge">Test: TT.MM.JJ</span>
+            </div>
+            <div class="podcast-date">BESCHREIBUNG DES TESTS</div>
+            
+            <audio class="audio-player" controls preload="metadata">
+                <source src="podcasts/R6a/KATEGORIE/DATEINAME.mp3" type="audio/mpeg">
+                Dein Browser unterstützt das Audio-Element nicht.
+            </audio>
+        </div>
+        
+        
+        ═══════════════════════════════════════════════════════════════════════════════
+        TIPPS:
+        ═══════════════════════════════════════════════════════════════════════════════
+        
+        • upcoming-badge = Blau (für kommende Tests)
+        • past-badge = Pastell (für vergangene Tests)
+        
+        • Badge kannst du auch weglassen: <div class="podcast-title">NUR TITEL</div>
+        
+        • Icons für Kategorien:
+          🇬🇧 Englisch    🏛️ Geschichte    🧮 Mathe        🔬 Physik
+          🧪 Chemie       🌍 Erdkunde      🇫🇷 Französisch  🇪🇸 Spanisch
+          🎨 Kunst        ⚽ Sport         📚 Deutsch      🎭 Theater
+          
+        • Pfad zu Podcasts: podcasts/R6a/KATEGORIE/DATEINAME.mp3
+        
+        ═══════════════════════════════════════════════════════════════════════════════
+        -->
+        
+        <div class="footer">
+            <p>💡 Tipp: Höre die Podcasts mehrmals an, um den Stoff besser zu verinnerlichen!</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Viel Erfolg bei den Klassenarbeiten! 🍀</p>
         </div>
     </div>
     
     <script>
-        function showAlert() {
-            alert('Hallo! Die Seite funktioniert einwandfrei. 🎉');
-        }
+        // Log für Debugging
+        console.log('Lernpodcast-Seite geladen');
         
-        // Einfache Konsolen-Nachricht
-        console.log('Test-Seite erfolgreich geladen!');
+        // Zeige aktuelle Podcasts basierend auf Datum
+        const today = new Date();
+        console.log('Heutiges Datum:', today.toLocaleDateString('de-DE'));
     </script>
 </body>
 </html>
