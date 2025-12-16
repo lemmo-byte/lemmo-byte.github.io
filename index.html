@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lernpodcasts Klasse R6a</title>
+    <title>Lernmaterialien Klasse R6a</title>
     <style>
         * {
             margin: 0;
@@ -171,6 +171,52 @@
             margin-top: 15px;
         }
         
+        .materials-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #e0e0e0;
+        }
+        
+        .materials-title {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .materials-title::before {
+            content: "📄";
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        
+        .material-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .material-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .material-link::before {
+            content: "📥";
+            margin-right: 6px;
+        }
+        
         .part-title {
             font-size: 0.95em;
             color: #555;
@@ -243,11 +289,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎧 Lernpodcasts R6a</h1>
-            <p>Levin's Podcasts zur Vorbereitung auf Klassenarbeiten</p>
+            <h1>📚 Lernmaterialien R6a</h1>
+            <p>Levin's Podcasts & Lernunterlagen zur Vorbereitung auf Klassenarbeiten</p>
         </div>
         
-        <div class="categories">
+        <div class="categories" id="categories-container">
             
             <!-- 
             ═══════════════════════════════════════════════════════════════════════════════
@@ -259,19 +305,23 @@
             1. Kopiere eine der VORLAGEN unten (Vorlage A, B oder C)
             2. Füge die Vorlage in diesem Bereich ein
             3. Ändere die Texte und Pfade zu deinen Podcasts
-            4. Speichern und fertig!
+            4. Füge "data-test-date" zum category-card div hinzu (Format: YYYY-MM-DD)
+            5. Speichern und fertig - die Sortierung erfolgt automatisch!
+            
+            WICHTIG: Jede category-card braucht ein data-test-date Attribut für die Sortierung!
+                     Format: data-test-date="2025-12-17"
             
             TIPP: Nutze "upcoming-badge" für kommende Tests und "past-badge" für vergangene
             
             ICONS für Kategorien: 🇬🇧 (Englisch) 🏛️ (Geschichte) 🧮 (Mathe) 🔬 (Physik)
-                                  🧪 (Chemie) 🌍 (Erdkunde) 🎨 (Kunst) ⚽ (Sport)
+                                  🧪 (Chemie) 🌍 (Erdkunde) 🎨 (Kunst) ⚽ (Sport) 💭 (Ethik)
             ═══════════════════════════════════════════════════════════════════════════════
             -->
             
             
             
             <!-- ========== ENGLISCH KATEGORIE ========== -->
-            <div class="category-card">
+            <div class="category-card" data-test-date="2025-12-16">
                 <div class="category-header">
                     <div class="category-icon">🇬🇧</div>
                     <div class="category-title">Englisch</div>
@@ -320,7 +370,7 @@
             
             
             <!-- ========== GESCHICHTE KATEGORIE ========== -->
-            <div class="category-card">
+            <div class="category-card" data-test-date="2025-12-04">
                 <div class="category-header">
                     <div class="category-icon">🏛️</div>
                     <div class="category-title">Geschichte</div>
@@ -344,6 +394,45 @@
                 
             </div>
             <!-- ========== ENDE GESCHICHTE ========== -->
+            
+            
+            
+            <!-- ========== ETHIK KATEGORIE ========== -->
+            <div class="category-card" data-test-date="2025-12-17">
+                <div class="category-header">
+                    <div class="category-icon">💭</div>
+                    <div class="category-title">Ethik</div>
+                </div>
+                
+                <!-- Podcast: Zusammen leben, zusammen wachsen -->
+                <div class="podcast-item">
+                    <div class="podcast-title">
+                        Zusammen leben, zusammen wachsen
+                        <span class="test-badge upcoming-badge">Test: 17.12.25</span>
+                    </div>
+                    <div class="podcast-date">Ethiktest am 17. Dezember 2025</div>
+                    
+                    <!-- Einzelner Podcast -->
+                    <audio class="audio-player" controls preload="metadata">
+                        <source src="podcasts/R6a/Ethik/Test_17_12_25/Ethik_Lernpodcast.mp3" type="audio/mpeg">
+                        Dein Browser unterstützt das Audio-Element nicht.
+                    </audio>
+                    
+                    <!-- Begleitende Materialien -->
+                    <div class="materials-section">
+                        <div class="materials-title">Begleitende Lernunterlagen</div>
+                        <a href="podcasts/R6a/Ethik/Test_17_12_25/Ethik_Kompakt_Lernzettel.pdf" 
+                           class="material-link" 
+                           target="_blank"
+                           download>
+                            Kompakter Lernzettel (PDF)
+                        </a>
+                    </div>
+                </div>
+                <!-- Ende: Zusammen leben, zusammen wachsen -->
+                
+            </div>
+            <!-- ========== ENDE ETHIK ========== -->
             
             
         </div>
@@ -407,58 +496,59 @@
                 </audio>
             </div>
         </div>
-        
-        
-        ═══════════════════════════════════════════════════════════════════════════════
-        VORLAGE C: EINZELNER PODCAST IN BESTEHENDE KATEGORIE EINFÜGEN
-        ═══════════════════════════════════════════════════════════════════════════════
-        
-        <div class="podcast-item">
-            <div class="podcast-title">
-                PODCAST TITEL
-                <span class="test-badge upcoming-badge">Test: TT.MM.JJ</span>
-            </div>
-            <div class="podcast-date">BESCHREIBUNG DES TESTS</div>
-            
-            <audio class="audio-player" controls preload="metadata">
-                <source src="podcasts/R6a/KATEGORIE/DATEINAME.mp3" type="audio/mpeg">
-                Dein Browser unterstützt das Audio-Element nicht.
-            </audio>
-        </div>
-        
-        
-        ═══════════════════════════════════════════════════════════════════════════════
-        TIPPS:
-        ═══════════════════════════════════════════════════════════════════════════════
-        
-        • upcoming-badge = Blau (für kommende Tests)
-        • past-badge = Pastell (für vergangene Tests)
-        
-        • Badge kannst du auch weglassen: <div class="podcast-title">NUR TITEL</div>
-        
-        • Icons für Kategorien:
-          🇬🇧 Englisch    🏛️ Geschichte    🧮 Mathe        🔬 Physik
-          🧪 Chemie       🌍 Erdkunde      🇫🇷 Französisch  🇪🇸 Spanisch
-          🎨 Kunst        ⚽ Sport         📚 Deutsch      🎭 Theater
-          
-        • Pfad zu Podcasts: podcasts/R6a/KATEGORIE/DATEINAME.mp3
-        
-        ═══════════════════════════════════════════════════════════════════════════════
         -->
         
         <div class="footer">
-            <p>💡 Tipp: Höre die Podcasts mehrmals an, um den Stoff besser zu verinnerlichen!</p>
+        
+        <div class="footer">
+            <p>💡 Tipp: Höre die Podcasts mehrmals an und nutze die Lernzettel zur Wiederholung!</p>
             <p style="margin-top: 10px; font-size: 0.9em;">Viel Erfolg bei den Klassenarbeiten! 🍀</p>
         </div>
     </div>
     
     <script>
-        // Log für Debugging
-        console.log('Lernpodcast-Seite geladen');
-        
-        // Zeige aktuelle Podcasts basierend auf Datum
-        const today = new Date();
-        console.log('Heutiges Datum:', today.toLocaleDateString('de-DE'));
+        // Automatische Sortierung der Kategorien nach Test-Datum
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Lernmaterialien-Seite geladen');
+            
+            const container = document.getElementById('categories-container');
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Zeit auf Mitternacht setzen für korrekten Vergleich
+            
+            console.log('Heutiges Datum:', today.toLocaleDateString('de-DE'));
+            
+            // Alle Kategorie-Karten sammeln
+            const cards = Array.from(container.getElementsByClassName('category-card'));
+            
+            // Nach Test-Datum sortieren
+            cards.sort(function(a, b) {
+                const dateA = new Date(a.getAttribute('data-test-date'));
+                const dateB = new Date(b.getAttribute('data-test-date'));
+                
+                const isPastA = dateA < today;
+                const isPastB = dateB < today;
+                
+                // Zukünftige Tests zuerst, dann vergangene
+                if (isPastA && !isPastB) return 1;
+                if (!isPastA && isPastB) return -1;
+                
+                // Innerhalb der Gruppe: nähere Termine zuerst
+                // Bei zukünftigen: aufsteigend (nächster zuerst)
+                // Bei vergangenen: absteigend (neuester zuerst)
+                if (!isPastA && !isPastB) {
+                    return dateA - dateB; // Aufsteigend für zukünftige
+                } else {
+                    return dateB - dateA; // Absteigend für vergangene
+                }
+            });
+            
+            // Karten in neuer Reihenfolge einfügen
+            cards.forEach(function(card) {
+                container.appendChild(card);
+            });
+            
+            console.log('Kategorien nach Test-Datum sortiert');
+        });
     </script>
 </body>
 </html>
