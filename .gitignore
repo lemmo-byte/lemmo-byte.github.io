@@ -5,6 +5,7 @@
 !*.mp3
 !*.pdf
 !*.html
+!*.jpg
 
 # Erlaube auch Verzeichnisse (damit Git sie durchsuchen kann)
 !*/
